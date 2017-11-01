@@ -1,8 +1,6 @@
 package edu.luc.cs271.linkedstack;
 
-import java.util.List;
-import java.util.ArrayList;
-
+import java.util.*;
 
 public class LinkedStack<E> implements IStack<E> {
 
@@ -10,50 +8,76 @@ public class LinkedStack<E> implements IStack<E> {
   private Node<E> top;
 
   // TODO why don't we need an explicit constructor?
+  
+  /* Because the class implements IStack and does not require its own contructor */
 
   @Override
   public E push(final E obj) {
-    // TODO
-    return null;
+    // done
+    top = new Node<E>(obj, top);
+    return obj;
   }
 
   @Override
   public E peek() {
-    // TODO
-    return null;
+    // done
+    if (isEmpty()) {
+      throw new NoSuchElementException();
+    }
+    return top.data;
   }
 
   @Override
   public E pop() {
-    // TODO
-    return null;
+    // DONE
+    if (isEmpty()) {
+      throw new NoSuchElementException();
+    }
+    Node<E> temp = top;
+    top = top.next;
+    return temp.data;
   }
 
   @Override
   public boolean isEmpty() {
-    // TODO
-    return false;
+    // DONE
+    if (top == null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @Override
-public List<E> asList() {
-  final ArrayList<E> result = new ArrayList<>(size);
-  populateList(null, result); // TODO replace null with the right reference
-  return result;
-  }  
+  public List<E> asList() {
+    final ArrayList<E> result = new ArrayList<>(size);
+    populateList(top, result); // done replace null with the right reference
+    return result;
+  }
   
   private void populateList(final Node<E> curr, final List<E> result) {
-  // TODO recursively populate the list in the desired order
+    // DONE recursively populate the list in the desired order
+    if (curr == null) {
+      return;
+    }
+    result.add(curr.data);
+    populateList(curr.next, result);
   }
 
-@Override
-public List<E> asFifoList() {
-  final ArrayList<E> result = new ArrayList<>(size);
-  populateFifoList(null, result); // TODO replace null with the right reference
-  return result;
+  @Override
+  public List<E> asFifoList() {
+    final ArrayList<E> result = new ArrayList<>(size);
+    populateFifoList(top, result); // DONE replace null with the right reference
+    return result;
   }
 
-private void populateFifoList(final Node<E> curr, final List<E> result) {
-  // TODO recursively populate the list in the desired order
+  private void populateFifoList(final Node<E> curr, final List<E> result) {
+    // DONE recursively populate the list in the desired order
+    if (curr == null) {
+      return;
+    }
+    result.add(0, curr.data);
+    populateFifoList(curr.next, result);
   }
+}
 }
