@@ -85,4 +85,61 @@ public class TestLinkedStack {
     final List<String> list2 = fixture.asList();
     assertEquals(2, list2.size());
   }
+  
+  @Test
+  public void testAsFifoListEmpty() {
+  assertEquals(0, fixture.asFifoList().size());
+  }
+
+  @Test
+  public void testAsFifoListNonempty() {
+  final String value1 = "hello";
+  final String value2 = "world";
+  fixture.push(value1);
+  fixture.push(value2);
+  final List<String> list = fixture.asFifoList();
+  assertEquals(2, list.size());
+  assertEquals(Arrays.asList(value1, value2), list);
+  final List<String> list2 = fixture.asFifoList();
+  assertEquals(2, list2.size());
+  }  
+}());
+  }
+
+  @Test
+  public void testPushThenPop() {
+    final String value = "hello";
+    fixture.push(value);
+    assertEquals(value, fixture.pop());
+    assertTrue(fixture.isEmpty());
+  }
+
+  @Test
+  public void testPush2ThenPop2() {
+    final String value1 = "hello";
+    final String value2 = "world";
+    fixture.push(value1);
+    fixture.push(value2);
+    assertEquals(value2, fixture.pop());
+    assertEquals(value1, fixture.pop());
+    assertTrue(fixture.isEmpty());
+  }
+
+  @Test
+  public void testAsListEmpty() {
+    assertEquals(0, fixture.asList().size());
+  }
+
+  @Test
+  public void testAsListNonempty() {
+    final String value1 = "hello";
+    final String value2 = "world";
+    fixture.push(value1);
+    fixture.push(value2);
+    final List<String> list = fixture.asList();
+    assertEquals(2, list.size());
+    assertEquals(Arrays.asList(value2, value1), list);
+    final List<String> list2 = fixture.asList();
+    assertEquals(2, list2.size());
+  }
 }
