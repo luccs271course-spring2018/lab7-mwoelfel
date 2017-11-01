@@ -1,6 +1,6 @@
 package edu.luc.cs271.linkedstack;
 
-import java.util.List;
+import java.util.List; 
 
 /**
  * Generic interface for a last-in-first-out (LIFO) data structure
@@ -53,5 +53,5 @@ public interface IStack<E> {
    * @post The stack remains unchanged.
    * @return The list containing the items in the stack
    */
-  List<E> asFifoList();
+  List<E> asList();
 }
