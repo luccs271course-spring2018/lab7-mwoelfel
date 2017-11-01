@@ -31,3 +31,4 @@ class Node<E> {
         (next != null ? ", Node@" + next.hashCode() + ")" : ")");
   }
 }
+ 
